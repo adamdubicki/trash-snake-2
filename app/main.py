@@ -40,8 +40,6 @@ def move():
     global gameManager
     game = gameManager.getGame(data)
 
-    print game.board
-
     return {
         'move': random.choice(directions),
         'taunt': 'battlesnake-python!'
