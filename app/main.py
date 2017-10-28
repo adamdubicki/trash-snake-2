@@ -17,9 +17,6 @@ def start():
     board_width = data['width']
     board_height = data['height']
 
-    global gameManager
-    gameManager.getGame(data)
-
     head_url = '%s://%s/static/head.png' % (
         bottle.request.urlparts.scheme,
         bottle.request.urlparts.netloc
