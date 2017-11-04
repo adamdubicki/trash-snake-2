@@ -18,18 +18,19 @@ class Game():
         for snake in snakes:
             newCoords = [(s[0], s[1]) for s in snake["coords"]]
             add = [s for s in newCoords if s not in self.snakes[snake["id"]]]
-            remove = [s for s in self.snakes[snake["id"]] if s not in newCoords]
-            self.board.insert(self.snakes[snake["id"]][0], BoardEntityEnum.OBSTACLE)
+            remove = filter(lambda x: x not in newCoords, self.snakes[snake["id"]])
+            if (len(self.snakes[snake["id"]])):
+                self.board.insert(self.snakes[snake["id"]][0], BoardEntityEnum.OBSTACLE)
             for s in add:
                 self.board.insert(s, BoardEntityEnum.OBSTACLE)
                 self.snakes[snake["id"]].append(s)
             for s in remove:
                 self.board.insert(s, BoardEntityEnum.EMPTY)
                 self.snakes[snake["id"]].remove(s)
-            if(snake["id"] == self.ourId):
+            if (snake["id"] == self.ourId):
                 self.board.insert(newCoords[0], BoardEntityEnum.HEAD)
-                if(self.ateFoodLastTurn):
-                    self.board.insert(newCoords[len(newCoords)-1], BoardEntityEnum.OBSTACLE)
+                if (self.ateFoodLastTurn):
+                    self.board.insert(newCoords[len(newCoords) - 1], BoardEntityEnum.OBSTACLE)
                 else:
                     self.board.insert(newCoords[len(newCoords) - 1], BoardEntityEnum.EMPTY)
             self.snakes[snake["id"]] = newCoords
