@@ -39,7 +39,10 @@ def move():
 
     global gameManager
     game = gameManager.getGame(data)
-    print game.board
+    if(game != None):
+        print game.board
+    else:
+        print "Snake == Dead"
 
     return {
         'move': random.choice(directions),
