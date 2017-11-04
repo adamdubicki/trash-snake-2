@@ -12,7 +12,7 @@ class GameManager():
     # Return a game object from the game json
     # Using the game cache speeds this up.
     def getGame(self, gameJson):
-        gid = gameJson["game_id"]
+        gid = gameJson["you"]
         if (gid not in self.gameCache.keys()):
             game = Game(Board(gameJson["width"], gameJson["height"]))
             game.ourId = gameJson["you"]

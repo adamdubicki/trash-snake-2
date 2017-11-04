@@ -1,6 +1,7 @@
 from BoardEntityEnum import BoardEntityEnum
 from itertools import product
 
+
 # Holds objects in a width x height 2D array
 class Board():
     def __init__(self, width, height):
@@ -24,6 +25,8 @@ class Board():
     def insert(self, tile, entity):
         if self.tileInBounds(tile):
             self.tiles[tile[0]][tile[1]] = entity
+        else:
+            print "Failed to Insert Tile at " + str(tile)
 
     # Casts the board to a String
     def __str__(self):
