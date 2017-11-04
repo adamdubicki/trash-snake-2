@@ -2,6 +2,7 @@ import bottle
 import os
 import random
 from GameManager import GameManager
+import BoardHelper
 
 gameManager = GameManager()
 
@@ -36,19 +37,20 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
-
-    # TODO: Do things with data
-    directions = ['up', 'down', 'left', 'right']
+    #
+    # # TODO: Do things with data
+    # directions = ['up', 'down', 'left', 'right']
 
     global gameManager
     game = gameManager.getGame(data)
+    move = 'up'
     if (game != None):
-        print game.board
+        move = game.getNextMove()
     else:
         print "Snake == Dead"
 
     return {
-        'move': random.choice(directions),
+        'move': move,
         'taunt': 'battlesnake-python!'
     }
 

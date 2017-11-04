@@ -21,6 +21,11 @@ class Board():
     def tileInBounds(self, tile):
         return True if (self.__xInbounds(tile[0]) and self.__yInBounds(tile[1])) else False
 
+    # Get the board entity at tile
+    def getEntityAtTile(self, tile):
+        if(self.tileInBounds(tile)):
+            return self.tiles[tile[0]][tile[1]]
+
     # Adds an entity to tile (x,y) if it is in bounds
     def insert(self, tile, entity):
         if self.tileInBounds(tile):

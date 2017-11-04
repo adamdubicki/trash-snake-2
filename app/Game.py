@@ -1,5 +1,5 @@
 from BoardEntityEnum import BoardEntityEnum
-from itertools import product
+import BoardHelper
 
 
 class Game():
@@ -9,6 +9,17 @@ class Game():
         self.snakes = {}
         self.ourId = None
         self.ateFoodLastTurn = False
+
+    def getNextMove(self):
+        food = BoardHelper.pickFood(self.ourId, self.snakes, self.food)
+        if (food != None):
+            path = BoardHelper.shortestPath(self.board, self.snakes[self.ourId], food)
+            if (path != None):
+                return path[0]
+            else:
+                return 'up'
+        else:
+            return 'up'
 
     def updateBoardFromJson(self, gameJson):
         self.__updateFood(gameJson["food"])
@@ -30,7 +41,7 @@ class Game():
             if (snake["id"] == self.ourId):
                 if (self.ateFoodLastTurn):
                     self.board.insert(newCoords[len(newCoords) - 1], BoardEntityEnum.OBSTACLE)
-                elif (len(newCoords) -1 > 2):
+                elif (len(newCoords) - 1 > 2):
                     self.board.insert(newCoords[len(newCoords) - 1], BoardEntityEnum.EMPTY)
                 self.board.insert(newCoords[0], BoardEntityEnum.HEAD)
             self.snakes[snake["id"]] = newCoords
