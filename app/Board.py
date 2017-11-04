@@ -11,11 +11,11 @@ class Board():
 
     # Returns true if the xpos is in the width boundary
     def __xInbounds(self, xpos):
-        return True if 0 < xpos <= (self.width - 1) else False
+        return True if 0 <= xpos <= (self.width - 1) else False
 
     # Returns true if the ypos is in the height boundary
     def __yInBounds(self, ypos):
-        return True if 0 < ypos <= (self.height - 1) else False
+        return True if 0 <= ypos <= (self.height - 1) else False
 
     # Returns true if a tile (x,y) is in bounds
     def tileInBounds(self, tile):
