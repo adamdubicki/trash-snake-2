@@ -5,6 +5,7 @@ from GameManager import GameManager
 
 gameManager = GameManager()
 
+
 @bottle.route('/static/<path:path>')
 def static(path):
     return bottle.static_file(path, root='static/')
@@ -23,10 +24,12 @@ def start():
     )
 
     return {
-        'color': '#00FF00',
+        'color': "rgb(255, 255, 255)",
         'taunt': '{} ({}x{})'.format(game_id, board_width, board_height),
         'head_url': head_url,
-        'name': 'battlesnake-python'
+        'head_type': 'sand-worm',
+        'tail_type': 'frechked',
+        'name': 'Trash_snek'
     }
 
 
@@ -39,7 +42,7 @@ def move():
 
     global gameManager
     game = gameManager.getGame(data)
-    if(game != None):
+    if (game != None):
         print game.board
     else:
         print "Snake == Dead"
