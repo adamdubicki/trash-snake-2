@@ -30,7 +30,7 @@ class Game():
             if (snake["id"] == self.ourId):
                 if (self.ateFoodLastTurn):
                     self.board.insert(newCoords[len(newCoords) - 1], BoardEntityEnum.OBSTACLE)
-                else:
+                elif (len(newCoords) -1 > 2):
                     self.board.insert(newCoords[len(newCoords) - 1], BoardEntityEnum.EMPTY)
                 self.board.insert(newCoords[0], BoardEntityEnum.HEAD)
             self.snakes[snake["id"]] = newCoords
