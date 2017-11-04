@@ -28,11 +28,11 @@ class Game():
                 self.board.insert(s, BoardEntityEnum.EMPTY)
                 self.snakes[snake["id"]].remove(s)
             if (snake["id"] == self.ourId):
-                self.board.insert(newCoords[0], BoardEntityEnum.HEAD)
                 if (self.ateFoodLastTurn):
                     self.board.insert(newCoords[len(newCoords) - 1], BoardEntityEnum.OBSTACLE)
                 else:
                     self.board.insert(newCoords[len(newCoords) - 1], BoardEntityEnum.EMPTY)
+                self.board.insert(newCoords[0], BoardEntityEnum.HEAD)
             self.snakes[snake["id"]] = newCoords
 
     def __updateFood(self, food):
