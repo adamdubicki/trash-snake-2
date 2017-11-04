@@ -1,5 +1,3 @@
-from Game import Game
-from Board import Board
 from BoardEntityEnum import BoardEntityEnum
 import collections
 
